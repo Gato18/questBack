@@ -425,7 +425,7 @@ router.post("/upload", async function (req, res, next) {
   fs.unlinkSync(pictureName);
 });
 
-router.get("/deleteOffer", async function (req, res, next) {
+router.delete("/deleteOffer", async function (req, res, next) {
   await UserModel.findOneAndUpdate(
     { token: req.query.token },
     {

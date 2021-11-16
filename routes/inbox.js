@@ -65,11 +65,6 @@ router.get("/selectedQuest", async function (req, res, next) {
 
 router.get("/conversation", async function (req, res, next) {
   var id = req.query.id;
-  console.log("/conversation");
-  console.log("/conversation");
-  console.log("/conversation");
-  console.log("/conversation");
-  console.log("/conversation");
 
   //On récupère tous les messages de la conversation selectionnée
   var messages = await ConversationModel.aggregate([
@@ -115,7 +110,7 @@ router.post("/addMessage", async function (req, res, next) {
   //user (sender), user (receiver), message, conversation id
   var newMessage = null;
   if (req.body.id) {
-    var newMessage = await ConversationModel.findOne({ _id: req.body.id });
+    newMessage = await ConversationModel.findOne({ _id: req.body.id });
   }
   if (newMessage === null) {
     var newMessage = new ConversationModel({
