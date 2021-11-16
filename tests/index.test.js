@@ -12,23 +12,25 @@ test("check signIn detail- Right data", async () => {
     });
 });
 
-test("get userDetail test- Wrong token", async () => {
-  await request(app)
-    .get("/home/userDetail")
-    .query({ token: "badToken" })
-    .then((response) => {
-      expect(response.body.result).toBe(false);
-    });
-});
+describe("Get userDetail", () => {
+  test("Wrong token", async () => {
+    await request(app)
+      .get("/home/userDetail")
+      .query({ token: "badToken" })
+      .then((response) => {
+        expect(response.body.result).toBe(false);
+      });
+  });
 
-test("get userDetail test- Correct token", async () => {
-  await request(app)
-    .get("/home/userDetail")
-    .query({ token: "mCwTMKjgkxTo7BFeAoio_Omi3KW_KTTx" })
-    .expect(200)
-    .then((response) => {
-      expect(response.body.result).toBe(true);
-    });
+  test("Correct token", async () => {
+    await request(app)
+      .get("/home/userDetail")
+      .query({ token: "mCwTMKjgkxTo7BFeAoio_Omi3KW_KTTx" })
+      .expect(200)
+      .then((response) => {
+        expect(response.body.result).toBe(true);
+      });
+  });
 });
 
 afterAll(() => {
