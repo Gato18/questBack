@@ -53,14 +53,6 @@ router.post("/sign-up", async function (req, res, next) {
 router.post("/sign-in", async function (req, res, next) {
   var result = false;
   var error = [];
-  console.log(req.body);
-  var dataUser = {
-    token: "",
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-  };
 
   if (req.body.emailFromFront == "" || req.body.passwordFromFront == "") {
     error.push("champs vides");
@@ -74,7 +66,7 @@ router.post("/sign-in", async function (req, res, next) {
     if (user) {
       if (bcrypt.compareSync(req.body.passwordFromFront, user.password)) {
         result = true;
-        dataUser = {
+        var dataUser = {
           token: user.token,
           firstName: user.firstName,
           lastName: user.lastName,
